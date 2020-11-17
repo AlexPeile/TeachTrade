@@ -47,6 +47,12 @@ class test_ricardian(unittest.TestCase):
         self.assertEqual(self.model.equal_autarky(), {"USA": 125, "UK": 140})
         self.model.set_good_a("wine")
 
+    def test_full_specialization(self):
+        self.assertEqual(self.model.full_specialization(), {"USA": ("cloth", 250), "UK": ("wine", 700)})
+        self.model.set_good_a("microprocessors")
+        self.assertEqual(self.model.full_specialization(), {"USA": ("microprocessors", 250), "UK": ("cloth", 700)})
+        self.model.set_good_a("wine")
+
 
 
 if __name__ == '__main__':

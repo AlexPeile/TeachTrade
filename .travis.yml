@@ -1,0 +1,20 @@
+dist: xenial
+language: python
+python:
+  - 3.6
+  - 3.7
+cache: pypi
+
+install:
+  - pip install flake8 codecov pytest pytest-cov
+
+script:
+  - python -m flake8 international_trade_models/
+  - python -m pytest -vvv international_trade_models/ --cov international_trade_models
+
+after_success:
+  - codecov
+ 
+branches:
+  only:
+  - master

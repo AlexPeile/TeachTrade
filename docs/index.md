@@ -1,10 +1,10 @@
-# EyeLock
-## A Chrome extension for remote browser tab focus-monitoring
+# TeachTrade
+## A fast, beginner-friendly python library for visualizing educational models of international trade
 
-EyeLock is a simple extension meant for educators running online exams, allowing users to pair up with their students and recieve alerts when students change bowser tabs or windows on the same device.
+TeachTrade aims to render a number of common macroeconomic models for international trade in a neat, pre-packaged format, helping students and educators alike. Many of these models aim for simplicty, matching their use in an undergraduate classroom setting, rather than aiming for robust, real-world, multi-factor models. 
 
 ## Features
-EyeLock incorporates a number of features:
-- Many-to-one student-instructor pairings - monitor the entire class from a single computer
-- Formatted logs for each paired student's focus session - time-stamped changes in tab focus, cleaned of possibly sensitive data
-- Optional URL matching - make sure the monitored tab has the correct specified URL
+TeachTrade aims to provide classes and functions for the following common neoclassical and new models:
+- Ricardian Trade
+- Specific Factors Model
+- Hecksher-Ohlin Model

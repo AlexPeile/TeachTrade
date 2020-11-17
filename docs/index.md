@@ -8,3 +8,4 @@ TeachTrade aims to provide classes and functions for the following common neocla
 - Ricardian Trade
 - Specific Factors Model
 - Hecksher-Ohlin Model
+- New Theory of Trade

@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-import country
+from international_trade_models import country
 
 class Ricardian2C2G():
     """
@@ -18,9 +18,9 @@ class Ricardian2C2G():
         :param input: the single factor of production
         :type input: str
         :param home: the home country for the model
-        :type home: Country
+        :type home: country.Country
         :param foreign: the foreign country for the model
-        :type foreign: Country
+        :type foreign: country.Country
         :return None:
         """
         self.a = good_a
@@ -28,6 +28,30 @@ class Ricardian2C2G():
         self.input = input
         self.home = home
         self.foreign = foreign
+
+    def set_factor(self, factor):
+        """Set the model's single factor of production
+
+        :param factor: the new factor to use
+        :type factor: str
+        """
+        self.input = factor
+
+    def set_good_a(self, good_a):
+        """Set the model's first good
+
+        :param good_a: the new good to use
+        :type good_a: str
+        """
+        self.a = good_a
+
+    def set_good_b(self, good_b):
+        """Set the model's second good
+
+        :param good_b: the new good to use
+        :type good_b: str
+        """
+        self.b = good_b
 
     def ufr_grid(self):
         """Generate a 2D list of unit factor requirements

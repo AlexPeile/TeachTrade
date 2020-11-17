@@ -1,7 +1,6 @@
 dist: xenial
 language: python
 python:
-  - 3.6
   - 3.7
 cache: pypi
 
@@ -10,7 +9,7 @@ install:
 
 script:
   - python -m flake8 international_trade_models/
-  - python -m pytest -vvv international_trade_models/ --cov international_trade_models
+  - python -m pytest -vvv international_trade_models/tests/ricardian_tests.py --cov international_trade_models
 
 after_success:
   - codecov

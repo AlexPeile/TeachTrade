@@ -1,5 +1,5 @@
-from matplotlib import pyplot as plt
 from international_trade_models import country
+
 
 class Ricardian2C2G():
     """

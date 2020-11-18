@@ -35,7 +35,7 @@ class test_ricardian(unittest.TestCase):
         self.assertEqual(self.model.b, "cloth")
 
     def test_ufr_grid(self):
-        self.assertEqual(self.model.ufr_grid(), [[3,2],[1,1]])
+        self.assertEqual(self.model.ufr_grid(), [[3, 2], [1, 1]])
         self.model.set_good_a("microprocessors")
         self.assertEqual(self.model.ufr_grid(), [[2, 2], [4, 1]])
         self.model.set_good_a("wine")

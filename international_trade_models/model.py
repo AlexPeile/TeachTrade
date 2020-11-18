@@ -1,6 +1,6 @@
 from international_trade_models import ricardian
 from international_trade_models import country
-#from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 
 
 class Model():

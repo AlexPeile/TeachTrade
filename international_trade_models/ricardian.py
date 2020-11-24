@@ -1,8 +1,7 @@
 from international_trade_models import country
 import matplotlib
-matplotlib.rcParams['text.usetex'] = True
 from matplotlib import pyplot as plt
-
+matplotlib.rcParams['text.usetex'] = True
 
 
 class Ricardian2C2G():
@@ -112,30 +111,30 @@ class Ricardian2C2G():
 
         return specialization
 
-    def ppf(self, filename = 'ppfs'):
+    def ppf(self, filename='ppfs'):
         """Visualizes the Ricardian, 1 input-2 good production possibilities frontier
 
         :param filename: (optional) name of image to create
-        :type filename: str"""
-
+        :type filename: str
+        """
         factor_home = self.home.factor_endowments[self.input]
         factor_foreign = self.foreign.factor_endowments[self.input]
         grid = self.ufr_grid()
 
-        x_home = [0, factor_home/grid[0][0]]
-        y_home = [factor_home/grid[0][1], 0]
-        x_for = [0, factor_foreign/grid[1][0]]
-        y_for = [factor_foreign/grid[1][1], 0]
+        x_home = [0, factor_home / grid[0][0]]
+        y_home = [factor_home / grid[0][1], 0]
+        x_for = [0, factor_foreign / grid[1][0]]
+        y_for = [factor_foreign / grid[1][1], 0]
 
         fig, (hax, fax) = plt.subplots(2, 1)
         fig.tight_layout(h_pad=4)
         fig.suptitle(r"PRODUCTION POSSIBILITIES FRONTIERS \newline $Y_{%s} = \frac{%s}{a_{%s}} - \frac{a_{%s}}{a_{%s}} Y_{%s}$"
-                  % (self.b, self.input, self.a, self.a, self.b, self.a))
+                     % (self.b, self.input, self.a, self.a, self.b, self.a))
         plt.subplots_adjust(left=0.125, top=0.85, bottom=0.1)
 
         hax.plot(x_home, y_home)
         hax.set(xlabel=self.a, ylabel=self.b,
-               title=self.home.name)
+                title=self.home.name)
         hax.grid()
 
         fax.plot(x_for, y_for)
@@ -150,17 +149,17 @@ class Ricardian2C2G():
         """Visualizes the Ricardian world relative supply curve
 
         :param filename: (optional) name of image to create
-        :type filename: str"""
-
+        :type filename: str
+        """
         grid = self.ufr_grid()
         spec = self.full_specialization()
         x_fullspec = spec[self.home.name][1] / spec[self.foreign.name][1]
 
         x = [0, 0, x_fullspec, x_fullspec, 2*x_fullspec]
         if spec[self.home.name][0] == 'a':
-            y = [0, grid[0][0]/grid[0][1], grid[0][0]/grid[0][1], grid[1][0]/grid[1][1], grid[1][0]/grid[1][1]]
+            y = [0, grid[0][0] / grid[0][1], grid[0][0] / grid[0][1], grid[1][0] / grid[1][1], grid[1][0] / grid[1][1]]
         else:
-            y = [0, grid[1][0] / grid[1][1], grid[1][0] / grid[1][1], grid[0][0] / grid[0][1], grid[0][0] / grid[0][1],]
+            y = [0, grid[1][0] / grid[1][1], grid[1][0] / grid[1][1], grid[0][0] / grid[0][1], grid[0][0] / grid[0][1]]
 
         fig, ax = plt.subplots()
         fig.suptitle("WORLD RELATIVE SUPPLY CURVE")

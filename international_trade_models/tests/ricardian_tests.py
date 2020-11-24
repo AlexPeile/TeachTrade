@@ -58,4 +58,3 @@ def test_full_specialization(ricardian_model):
     ricardian_model.set_good_a("microprocessors")
     assert ricardian_model.full_specialization() == {"USA": ("microprocessors", 250), "UK": ("cloth", 700)}
     ricardian_model.set_good_a("wine")
-    

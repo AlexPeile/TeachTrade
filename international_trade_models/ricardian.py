@@ -155,7 +155,7 @@ class Ricardian2C2G():
         spec = self.full_specialization()
         x_fullspec = spec[self.home.name][1] / spec[self.foreign.name][1]
 
-        x = [0, 0, x_fullspec, x_fullspec, 2*x_fullspec]
+        x = [0, 0, x_fullspec, x_fullspec, 2 * x_fullspec]
         if spec[self.home.name][0] == 'a':
             y = [0, grid[0][0] / grid[0][1], grid[0][0] / grid[0][1], grid[1][0] / grid[1][1], grid[1][0] / grid[1][1]]
         else:

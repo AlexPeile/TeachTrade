@@ -1,4 +1,5 @@
 import pytest
+import pytest_mpl
 from international_trade_models import country, ricardian
 
 

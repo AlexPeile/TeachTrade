@@ -1,4 +1,8 @@
 from international_trade_models import country
+import matplotlib
+matplotlib.rcParams['text.usetex'] = True
+from matplotlib import pyplot as plt
+
 
 
 class Ricardian2C2G():
@@ -9,7 +13,7 @@ class Ricardian2C2G():
     - labor perfectly mobile across sectors
     """
     def __init__(self, good_a, good_b, input, home, foreign):
-        """Initialize instance variables.
+        """Initialize instance variables
 
         :param good_a: the first trade good of the model
         :type good_a: str
@@ -107,3 +111,66 @@ class Ricardian2C2G():
             specialization[self.foreign.name] = (self.a, self.foreign.factor_endowments[self.input] / grid[1][0])
 
         return specialization
+
+    def ppf(self, filename = 'ppfs'):
+        """Visualizes the Ricardian, 1 input-2 good production possibilities frontier
+
+        :param filename: (optional) name of image to create
+        :type filename: str"""
+
+        factor_home = self.home.factor_endowments[self.input]
+        factor_foreign = self.foreign.factor_endowments[self.input]
+        grid = self.ufr_grid()
+
+        x_home = [0, factor_home/grid[0][0]]
+        y_home = [factor_home/grid[0][1], 0]
+        x_for = [0, factor_foreign/grid[1][0]]
+        y_for = [factor_foreign/grid[1][1], 0]
+
+        fig, (hax, fax) = plt.subplots(2, 1)
+        fig.tight_layout(h_pad=4)
+        fig.suptitle(r"PRODUCTION POSSIBILITIES FRONTIERS \newline $Y_{%s} = \frac{%s}{a_{%s}} - \frac{a_{%s}}{a_{%s}} Y_{%s}$"
+                  % (self.b, self.input, self.a, self.a, self.b, self.a))
+        plt.subplots_adjust(left=0.125, top=0.85, bottom=0.1)
+
+        hax.plot(x_home, y_home)
+        hax.set(xlabel=self.a, ylabel=self.b,
+               title=self.home.name)
+        hax.grid()
+
+        fax.plot(x_for, y_for)
+        fax.set(xlabel=self.a, ylabel=self.b,
+                title=self.foreign.name)
+        fax.grid()
+
+        fig.savefig(filename + ".png")
+        plt.show()
+
+    def rs_curve(self, filename='rs_curve'):
+        """Visualizes the Ricardian world relative supply curve
+
+        :param filename: (optional) name of image to create
+        :type filename: str"""
+
+        grid = self.ufr_grid()
+        spec = self.full_specialization()
+        x_fullspec = spec[self.home.name][1] / spec[self.foreign.name][1]
+
+        x = [0, 0, x_fullspec, x_fullspec, 2*x_fullspec]
+        if spec[self.home.name][0] == 'a':
+            y = [0, grid[0][0]/grid[0][1], grid[0][0]/grid[0][1], grid[1][0]/grid[1][1], grid[1][0]/grid[1][1]]
+        else:
+            y = [0, grid[1][0] / grid[1][1], grid[1][0] / grid[1][1], grid[0][0] / grid[0][1], grid[0][0] / grid[0][1],]
+
+        fig, ax = plt.subplots()
+        fig.suptitle("WORLD RELATIVE SUPPLY CURVE")
+
+        ax.plot(x, y)
+        ax.set_xlabel(r"$\frac{Global\ %s\ Production}{Global\ %s\ Production}$" % (self.a, self.b), labelpad=5)
+        ax.xaxis.set_label_coords(1, -0.055)
+        ax.set_ylabel(r"$\frac{P_{%s}}{P_{%s}}$" % (self.a, self.b), rotation=0)
+        ax.yaxis.set_label_coords(-0.025, 1.05)
+        ax.grid()
+
+        fig.savefig(filename + ".png")
+        plt.show()
